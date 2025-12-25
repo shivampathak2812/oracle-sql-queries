@@ -1,0 +1,42 @@
+create table courses(
+    stud_id numeric(10),
+    course_name varchar2(50),
+    course_id numeric(10),
+    constraint course_id_pk primary key(course_id)
+);
+
+insert into courses(course_id, course_name, stud_id)
+with ABC as(
+    select 101, 'SQL', 1001 from dual union ALL
+    select 102, 'JAVA', 1002 from dual union all
+    select 103, 'PYTHON', 1003 from dual union all
+    select 104, 'CPP', 1004 from dual union all
+    select 105, 'TESTING', 1005 from dual 
+) Select * from ABC;
+select * from courses;
+
+desc courses;
+
+create table students(
+    stud_id numeric(10),
+    first_name varchar(45),
+    last_name varchar(45),
+    course_id numeric(10),
+    constraint stud_id_pk primary key(stud_id),
+    foreign key(course_id) references courses(course_id) on delete set null
+);
+
+insert into students(stud_id, first_name, last_name, course_id)
+with ABE as(
+    select 23, 'Shivam', 'Pathak', 101 from dual union all
+    select 24, 'Mayank', 'Pathak', 102 from dual union all
+    select 25, 'Harshit', 'Dubey', 103 from dual union ALL
+    select 26, 'Harsh', 'Pathak', 104 from dual union all
+    select 27, 'Nishant', 'Sinha', 105 from dual
+) select * from ABE;
+Select * from students;
+
+
+select constraint_name, constraint_type, table_name from user_constraints where table_name='STUDENTS';
+
+alter table students rename CONSTRAINT

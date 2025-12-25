@@ -1,0 +1,18 @@
+select * from hr.employees;
+select first_name, last_name, email, phone_number, job_id, salary, department_id from hr.employees where department_id in (90,60) and salary<10000;
+select job_id from hr.employees where job_id like 'I%';
+select count(*) from hr.employees where department_id=50;
+select count(distinct department_id)from hr.employees where department_id in (90,50);
+select round(avg(nvl(commission_pct, 0))) from hr.employees;
+select job_id, count(job_id) from hr.employees group by job_id;
+select department_id, count(department_id) from hr.employees group by department_id;
+select department_id, count(department_id) from hr.employees group by department_id order by department_id DESC;;
+select department_id, count(*) from hr.employees group by department_id;
+select max(department_id), department_id from hr.employees group by department_id;
+select count(department_id), department_id from hr.employees group by department_id;
+select max("total employee") from (select count(employee_id) as "total employee" from hr.employees group by department_id);
+select department_id from hr.employees;
+select department_id, avg(salary) from hr.employees group by department_id;
+select department_id, job_id , sum(salary) from hr.employees where department_id >40 group by department_id, job_id order by department_id DESC;
+select department_id, job_id , sum(salary) from hr.employees group by department_id, job_id order by department_id DESC;
+select department_id, max(salary) from hr.employees group by department_id having max(salary)>10000; 
